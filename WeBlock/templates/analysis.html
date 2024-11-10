@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeBlock - Analysis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(90deg, #5D5FEF, #24FF72);
+            color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-top: 20px;
+        }
+
+        .analysis-box {
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+            color: #333;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+        }
+
+        .safety-gauge {
+            font-size: 2rem;
+            margin: 20px 0;
+        }
+
+        .gauge {
+            height: 20px;
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .gauge-bar {
+            height: 100%;
+            width: 0;
+            background-color: #24FF72;
+            transition: width 1s ease-in-out;
+            border-radius: 10px;
+        }
+
+        .result-details {
+            margin-top: 20px;
+            font-size: 1.2rem;
+        }
+
+        .buttons button {
+            padding: 10px 20px;
+            border-radius: 20px;
+            background-color: #f0f0f0;
+            cursor: pointer;
+        }
+
+        .buttons button:hover {
+            background-color: #d3d3d3;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            const safetyScore = {{ safety_score }};
+            const gaugeBar = document.querySelector('.gauge-bar');
+            gaugeBar.style.width = safetyScore + '%';
+            if (safetyScore <= 50) {
+                gaugeBar.style.backgroundColor = '#FF5F5F';
+            } else if (safetyScore <= 75) {
+                gaugeBar.style.backgroundColor = '#FFD700';
+            }
+        };
+    </script>
+</head>
+<body>
+    <h1>Website Safety Analysis</h1>
+    <div class="analysis-box">
+        <p><strong>Website Name:</strong> {{ website_name }}</p>
+        <p><strong>IP Address:</strong> {{ ip_address }}</p>
+        <div class="safety-gauge">
+            <p><strong>Safety Score:</strong> {{ safety_score }}%</p>
+            <div class="gauge">
+                <div class="gauge-bar"></div>
+            </div>
+        </div>
+        <div class="result-details">
+            <p><strong>Analysis Details:</strong></p>
+            <p>{{ analysis_result }}</p>
+        </div>
+    </div>
+    <div class="buttons">
+        <button onclick="window.location.href='/'">Back to Home</button>
+    </div>
+    <footer>Designed By Sumit Bedre</footer>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeBlock - Details</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(90deg, #5D5FEF, #24FF72);
+            color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            flex-direction: column;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-top: 20px;
+        }
+        p {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        .result {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            margin: 20px 0;
+            overflow: auto; /* Add this line */
+            word-wrap: break-word; /* Add this line */
+        }
+        footer {
+            font-size: 1rem;
+            margin-top: 40px;
+            color: #333;
+        }
+        .buttons button {
+            padding: 10px 20px;
+            border-radius: 20px;
+            background-color: #f0f0f0;
+            cursor: pointer;
+            margin: 0 10px; /* Add margin for spacing */
+        }
+
+        .buttons button:hover {
+            background-color: #d3d3d3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Scan Results</h1>
+    <div class="result">
+        <h2>Website Name: {{ website_name }}</h2>
+        <h3>Website URL: {{ website_url }}</h3>
+        <p><strong>IP Address:</strong> {{ ip_address }}</p>
+        <h3>Analysis Result:</h3>
+        <pre>{{ additional_info }}</pre>
+        <h3>Nmap Scan Result:</h3>
+        <pre>{{ nmap_result }}</pre>
+    </div>
+    <div class="buttons">
+        <button onclick="window.location.href='/'">Back to Home</button>
+        <button><a href="/download_scan_result?file_path={{ file_path }}" class="button">Download Scan Result</a></button>
+    </div>
+
+    <footer>
+        Designed By Sumit Bedre
+    </footer>
+
+    <script>
+        function downloadResults() {
+            const websiteName = "{{ website_name }}";
+            const websiteURL = "{{ website_url }}";
+            const ipAddress = "{{ ip_address }}";
+            const additionalInfo = "{{ additional_info }}";
+            const nmapResult = "{{ nmap_result }}";
+
+            const content = `Website Name: ${websiteName}\n` +
+                            `Website URL: ${websiteURL}\n` +
+                            `IP Address: ${ipAddress}\n` +
+                            `Analysis Result:\n${additionalInfo}\n` +
+                            `Nmap Scan Result:\n${nmapResult}`;
+
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'scan_results.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>

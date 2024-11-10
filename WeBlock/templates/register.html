@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Page</title>
+    <style>
+        /* General styling with gradient background */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(90deg, #5D5FEF, #24FF72);
+            color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        /* Container styling for form box */
+        .register-container {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(93, 95, 239, 0.5);
+            width: 300px;
+            text-align: center;
+        }
+        /* Header styling */
+        h1 {
+            color: #24FF72;
+            font-size: 32px;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px #24FF72, 0 0 20px #24FF72;
+        }
+        /* Label styling */
+        label {
+            color: #FFF;
+            font-size: 16px;
+            margin-bottom: 8px;
+            display: block;
+        }
+        /* Input styling */
+        input {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 5px;
+            color: #FFF;
+            font-size: 16px;
+            outline: none;
+        }
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        /* Button styling */
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #24FF72;
+            border: none;
+            border-radius: 5px;
+            color: #000;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            background-color: #5D5FEF;
+            color: #FFF;
+            box-shadow: 0 0 10px #5D5FEF, 0 0 20px #5D5FEF;
+        }
+        /* Link styling for existing user login */
+        .login-link {
+            margin-top: 20px;
+        }
+        .login-link a {
+            color: #24FF72;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        .login-link a:hover {
+            text-shadow: 0 0 10px #24FF72, 0 0 20px #24FF72;
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <h1>Register</h1>
+        <form action="{{ url_for('register') }}" method="POST">
+            {{ form.hidden_tag() }}  <!-- CSRF protection token -->
+
+            <label for="name">Name</label>
+            {{ form.name(id="name", class="form-control") }}  <!-- Name input -->
+
+            <label for="email">Email</label>
+            {{ form.email(id="email", class="form-control") }}  <!-- Email input -->
+
+            <label for="password">Password</label>
+            {{ form.password(id="password", class="form-control") }}  <!-- Password input -->
+
+            <button type="submit">Register</button>
+        </form>
+        <div class="login-link">
+            <a href="{{ url_for('login') }}">Already a user? Login here</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weblock</title>
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        /* Body styling */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(90deg, #5D5FEF, #24FF72);
+            color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            flex-direction: column;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-top: 20px;
+        }
+        p {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        .search-bar {
+            position: relative;
+            margin: 20px 0;
+            width: 100%;
+            max-width: 1000px;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 10px 50px 10px 20px;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+        .search-bar .mic-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .buttons button {
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: none;
+            background-color: #f0f0f0;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin: 0 10px;
+        }
+        .buttons button:hover {
+            background-color: #d3d3d3;
+        }
+        footer {
+            font-size: 1rem;
+            margin-top: 40px;
+            color: #333;
+        }
+        .robot-image img {
+            width: 150px;
+            height: auto;
+        }
+        .sidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        } 
+
+.sidenav a {
+          padding: 8px 8px 8px 32px;
+          text-decoration: none;
+          font-size: 25px;
+          color: #818181;
+          display: block;
+          transition: 0.3s;
+            }
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+span[onclick="openNav()"] {
+    position: absolute;
+    top: 20px; 
+    left: 20px; 
+    z-index: 1000; 
+    text-decoration: none;
+}
+.login-register-btn {
+    position: absolute;
+    top: 20px; 
+    right: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    background-color: white;
+    color: black;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    z-index: 1000; 
+    text-decoration: none;
+}
+
+.login-register-btn:hover {
+    background-color: black;
+    color: white;
+    text-decoration: none;
+}
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+    </style>
+</head>
+<body>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="/">Home</a>
+        <a href="/aboutus">About</a>
+        <a href="/register">Register Me</a>
+        <a href="/contactus">Contact</a>
+      </div>
+      <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+
+      <button class="login-register-btn"><a href="register">Login / Register</a></button>
+    <div class="robot-image">
+        <img src="/static/images/logo.png" alt="Robot">
+    </div>
+
+    <h1>WeBlock</h1><br>
+    <p>Your safety is our priority...</p>
+
+    <form method="POST">
+        <div class="search-bar">
+            <input type="text" name="url" placeholder="Enter the Name of website" required>
+            <span class="mic-icon">👽</span>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" name="url2" placeholder="Enter the URL here" required>
+            <span class="mic-icon">👽</span>
+        </div>
+
+        <div class="search-bar">
+            <label for="scan_type">Select Scan Type:</label>
+            <select name="scan_type" id="scan_type" required>
+                <option value="1">Intense Scan</option>
+                <option value="2">Intense Scan Plus UDP</option>
+            </select>
+        </div>
+
+        <div class="buttons">
+            <button type="submit" formaction="/scan">Scan</button>
+            <button type="submit" formaction="/detailed_scan">Detailed Scan</button>
+        </div>
+    </form>
+
+    <footer>
+        Designed By Sumit Bedre
+    </footer>
+    <script>
+        function openNav() {
+          document.getElementById("mySidenav").style.width = "250px";
+        }
+        
+        function closeNav() {
+          document.getElementById("mySidenav").style.width = "0";
+        }
+        </script>
+</body>
+</html>

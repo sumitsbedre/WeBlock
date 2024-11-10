@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeBlock - Scan Result</title>
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(90deg, #5D5FEF, #24FF72);
+            color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-top: 20px;
+        }
+
+        .result-box {
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+            color: #333;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+        }
+
+        .buttons button {
+            padding: 10px 20px;
+            border-radius: 20px;
+            background-color: #f0f0f0;
+            cursor: pointer;
+        }
+
+        .buttons button:hover {
+            background-color: #d3d3d3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Scan Results</h1>
+    <div class="result-box">
+        <p><strong>Website Name:</strong> {{ website_name }}</p><br>
+        <p><strong>Analysis Result:</strong> {{ analysis_result }}</p>
+    </div>
+    <br>
+    <div class="buttons">
+        <button type="submit" formaction="/detailed_scan">Detailed Scan</button>
+        <button onclick="window.location.href='/'">Back to Home</button>
+    </div>
+    <footer>Designed By Sumit Bedre</footer>
+</body>
+</html>
